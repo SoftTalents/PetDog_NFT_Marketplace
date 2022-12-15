@@ -67,7 +67,7 @@ export default function SellNFT () {
             await transaction.wait();
 
             alert('Successfuly listed your NFT!');
-            updataMessage('');
+            updateMessage('');
             updateFormParams({
                 name: '', description: '', price: ''
             });
