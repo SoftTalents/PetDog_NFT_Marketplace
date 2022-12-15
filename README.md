@@ -1,10 +1,15 @@
-# Basic NFT Marketplace end to end
+# Chocobo NFT Marketplace end to end example
 
-This code is for the Tutorial [Build your own NFT Marketplace from Scratch](https://docs.alchemy.com/alchemy/) built by [alchemy.com](https://alchemy.com)
+This code is built on [alchemy](https://alchemy.com) and [pinata](https://www.pinata.cloud).
+
+To deploy the smart contract on Goerli
+```bash
+npx hardhat run --network goerli scripts/deploy.js
+``` 
 
 To set up the repository and run the marketplace locally, run the below
 ```bash
-git clone https://github.com/OMGWINNING/NFT-Marketplace-Tutorial
+git clone https://github.com/SoftTalents/Chocobo_NFT_Marketplace.git
 cd NFT-Marketplace-Tutorial
 npm install
 npm start
