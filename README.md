@@ -1,4 +1,4 @@
-# Chocobo NFT Marketplace end to end example
+# PetDog NFT Marketplace end to end example
 
 This code is built on [alchemy](https://alchemy.com) and [pinata](https://www.pinata.cloud).
 
