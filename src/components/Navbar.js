@@ -45,7 +45,7 @@ function Navbar() {
     const chainId = await window.ethereum.request({
       method: 'eth_chainId'
     });
-    if (chainId != '0x5') {
+    if (chainId !== '0x5') {
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: '0x5' }]
@@ -55,7 +55,6 @@ function Navbar() {
       .then(async () => {
         updateButton();
         await getAddress();
-        debugger;
         window.location.replace(location.pathname);
       });
   }
@@ -63,28 +62,24 @@ function Navbar() {
   useEffect(() => {
     if (!window.ethereum.isMetaMask)
       return;
-    let metamaskProxy, val;
 
-    if (window.ethereum.providers == undefined) {
-      metamaskProxy = window.ethereum.isConnected();
-    } else {
-      metamaskProxy = window.ethereum.providers.find(provider => provider.isMetaMask == true);
+    if (window.ethereum.providers !== undefined) {
+      window.ethereum = window.ethereum.providers.find(provider => provider.isMetaMask === true);
     }
 
-    val = metamaskProxy.isConnected();
+    let val = window.ethereum.isConnected();
 
     if(val)
     {
       console.log("here");
       getAddress();
-      toggleConnect(val);
-      updateButton();
+      updateButton(val);
     }
 
     window.ethereum.on('accountsChanged', function(accounts){
       window.location.replace(location.pathname)
     })
-  }, []);
+  });
 
   return (
     <div className="">
