@@ -14,3 +14,8 @@ cd NFT-Marketplace-Tutorial
 npm install
 npm start
 ```
+
+:building_construction: **Important**
+
+For now, don't use the Coinbase extension with Metamask; it makes trouble.
+We will fix the issue after soon.
