@@ -13,10 +13,10 @@ export default function SellNFT () {
 
     // upload NFT image to IPFS
     async function OnChangeFile(e) {
-        var file = e.targe.files[0];
+        var file = e.target.files[0];
         try {
             const response = await uploadFileToIPFS(file);
-            if (response.success == true) {
+            if (response.success === true) {
                 console.log(`Uploaded image to pinata: ${response.pinataURL}`);
                 setFileURL(response.pinataURL);
             }
@@ -31,19 +31,20 @@ export default function SellNFT () {
         const { name, description, price } = formParams;
         // Make sure that none of the fields are empty.
         if (!name || !description || !price || !fileURL)
-            return;
+            return null;
         const nftJSON = {
             name, description, price, image: fileURL
         };
         try {
             const response = await uploadJSONToIPFS(nftJSON);
-            if (response.success == true) {
+            if (response.success === true) {
                 console.log(`Uploaded JSON to Pinata: ${response}`);
                 return response.pinataURL;
             }
         }
         catch(e) {
             console.log(`error uploading JSON metadata: ${e}`);
+            return null;
         }
     }
 
@@ -53,6 +54,10 @@ export default function SellNFT () {
         // update data to IPFS
         try {
             const metadataURL = await uploadMetadataToIPFS();
+            if (metadataURL == null) {
+                updateMessage(`Please chekc all fields filled`);
+                return;
+            }
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
             updateMessage(`Please wait... uploading`);
