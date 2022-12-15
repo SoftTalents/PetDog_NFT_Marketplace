@@ -16,7 +16,7 @@ export default function SellNFT () {
         var file = e.target.files[0];
         try {
             const response = await uploadFileToIPFS(file);
-            if (response.success == true) {
+            if (response.success === true) {
                 console.log(`Uploaded image to pinata: ${response.pinataURL}`);
                 setFileURL(response.pinataURL);
             }
@@ -37,7 +37,7 @@ export default function SellNFT () {
         };
         try {
             const response = await uploadJSONToIPFS(nftJSON);
-            if (response.success == true) {
+            if (response.success === true) {
                 console.log(`Uploaded JSON to Pinata: ${response}`);
                 return response.pinataURL;
             }

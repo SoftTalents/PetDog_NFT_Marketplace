@@ -53,8 +53,8 @@ function Navbar() {
     }
     await window.ethereum.request({ method: 'eth_requestAccounts' })
       .then(async () => {
-        updateButton();
         await getAddress();
+        updateButton();
         window.location.replace(location.pathname);
       });
   }
